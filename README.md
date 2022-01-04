@@ -43,4 +43,4 @@ func main() {
 
 ```
 
-Now everytime you change something in Aseprite the spritesheets could immediatly used after using the export scripts!
+Now everytime you change something in Aseprite the spritesheets could be immediatly used after using the export scripts!
