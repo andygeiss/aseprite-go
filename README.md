@@ -23,7 +23,7 @@ Open the [sprites](https://github.com/andygeiss/aseprite-go/tree/main/sprites) f
 This spritesheet contains an idle and walk animation facing the up, down, left and right direction.
 ![player](player.gif)
 
-Now use the script menu in Aseprite to execute `export_tags_to_sheets` which creates a corresponding .json and .png file for each tag.
+Now use the script menu in Aseprite to execute `export_tags_to_sheets` which creates a corresponding `.json` and `.png` file for each tag.
 
 ## Read the spritesheets with Go
 
