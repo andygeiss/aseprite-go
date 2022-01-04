@@ -38,7 +38,7 @@ func main() {
     duration := frames[0].DurationMs // get the duration in milliseconds
     pos_x := frames[0].Pos_X // get x and y position in the spritesheet
     pos_y := frames[0].Pos_Y
-    png := filepath.join("sprites", "player-idle-down.png") // spritesheet is always key + .png
+    png := filepath.Join("sprites", "player-idle-down.png") // spritesheet is always key + .png
 }
 
 ```
