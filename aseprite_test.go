@@ -1,6 +1,7 @@
 package aseprite_test
 
 import (
+	"embed"
 	"fmt"
 	"path/filepath"
 	"testing"
@@ -88,6 +89,17 @@ func Test_LoadSpritesheet_Should_Return_2_Sprites_Given_Project_Path(t *testing.
 func Test_LoadSpritesheet_Should_Return_8_Sprites_Given_Project_Path(t *testing.T) {
 	path := filepath.Join("sprites")
 	data, err := aseprite.LoadSpritesheet(path)
+	assertThat(t, err, nil)
+	assertThat(t, len(data), 8)
+	assertThat(t, len(data["player-idle-down"]), 4)
+}
+
+//go:embed sprites
+var sprites embed.FS
+
+func Test_LoadSpritesheetEmbed_Should_Return_8_Sprites_Given_Project_Path(t *testing.T) {
+	path := filepath.Join("sprites")
+	data, err := aseprite.LoadSpritesheetEmbed(path, sprites)
 	assertThat(t, err, nil)
 	assertThat(t, len(data), 8)
 	assertThat(t, len(data["player-idle-down"]), 4)

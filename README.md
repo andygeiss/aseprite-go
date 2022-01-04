@@ -2,7 +2,7 @@
 
 [![Go Report Card](https://goreportcard.com/badge/github.com/andygeiss/aseprite-go)](https://goreportcard.com/report/github.com/andygeiss/aseprite-go)
 
-**Supercharge your Aseprite Workflow with custom scripts and a Go module**
+**Supercharge your Aseprite Workflow with custom scripts and a Go module - Now works with embedded assets, too.**
 
 Adam shared some bits and pieces that he uses all the time in Aseprite to speed up his workflow on [YouTube](https://www.youtube.com/watch?v=hiMBVCFMj6E).
 
@@ -44,3 +44,22 @@ func main() {
 ```
 
 Now everytime you change something in Aseprite the spritesheets could be immediatly used after using the export scripts!
+
+## Support for embedded assets
+
+Since Go 1.16 we have the [embed](https://pkg.go.dev/embed) package which enables us to include our assets into the binary.
+You could read the Spritesheets from there by using the `LoadSpritesheetEmbed` function.
+
+
+```golang
+
+//go:embed sprites
+var sprites embed.FS
+
+func main() {
+    path := filepath.Join("sprites")
+    sprites, _ := aseprite.LoadSpritesheetEmbed(path, sprites)
+    ...
+}
+
+```

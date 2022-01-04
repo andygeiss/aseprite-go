@@ -1,8 +1,9 @@
 package aseprite
 
 import (
+	"embed"
 	"encoding/json"
-	"io/ioutil"
+	"io/fs"
 	"os"
 	"path/filepath"
 	"strings"
@@ -19,6 +20,21 @@ type Frame struct {
 
 // Spritesheet is a map of frame slices.
 type Spritesheet map[string][]*Frame
+
+// DecodePath ...
+func DecodePath(path string) (data map[string]interface{}, err error) {
+	// open file
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+	// decode JSON to Go data structure
+	if err := json.NewDecoder(file).Decode(&data); err != nil {
+		return nil, err
+	}
+	return data, err
+}
 
 // FrameAt ...
 func FrameAt(index int, data map[string]interface{}) (f *Frame) {
@@ -62,10 +78,26 @@ func ImageName(data map[string]interface{}) string {
 // LoadSpritesheet ...
 func LoadSpritesheet(path string) (spritesheet Spritesheet, err error) {
 	// read directory
-	entries, err := ioutil.ReadDir(path)
+	entries, err := os.ReadDir(path)
 	if err != nil {
 		return nil, err
 	}
+	// create and return the spritesheet
+	return createSpritesheetFromEntries(path, entries)
+}
+
+// LoadSpritesheetEmbed ...
+func LoadSpritesheetEmbed(path string, fs embed.FS) (spritesheet Spritesheet, err error) {
+	// read directory
+	entries, err := fs.ReadDir(path)
+	if err != nil {
+		return nil, err
+	}
+	// create and return the spritesheet
+	return createSpritesheetFromEntries(path, entries)
+}
+
+func createSpritesheetFromEntries(path string, entries []fs.DirEntry) (spritesheet Spritesheet, err error) {
 	// check each entry
 	spritesheet = make(Spritesheet)
 	for _, entry := range entries {
@@ -95,19 +127,4 @@ func LoadSpritesheet(path string) (spritesheet Spritesheet, err error) {
 		spritesheet[prefixSuffix[0]] = Frames(sheet)
 	}
 	return spritesheet, nil
-}
-
-// DecodePath ...
-func DecodePath(path string) (data map[string]interface{}, err error) {
-	// open file
-	file, err := os.Open(path)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-	// decode JSON to Go data structure
-	if err := json.NewDecoder(file).Decode(&data); err != nil {
-		return nil, err
-	}
-	return data, err
 }
