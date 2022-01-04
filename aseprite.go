@@ -11,10 +11,10 @@ import (
 // Frame stores the data.
 type Frame struct {
 	DurationMs float64 `json:"duration_ms"`
-	Pos_X      float32 `json:"pos_x"`
-	Pos_Y      float32 `json:"pos_y"`
-	Size_X     float32 `json:"size_x"`
-	Size_Y     float32 `json:"size_y"`
+	PosX       float32 `json:"pos_x"`
+	PosY       float32 `json:"pos_y"`
+	SizeX      float32 `json:"size_x"`
+	SizeY      float32 `json:"size_y"`
 }
 
 // Spritesheet is a map of frame slices.
@@ -32,10 +32,10 @@ func FrameAt(index int, data map[string]interface{}) (f *Frame) {
 	duration := frames[index].(map[string]interface{})["duration"].(float64)
 	return &Frame{
 		DurationMs: duration,
-		Pos_X:      float32(frame["x"].(float64)),
-		Pos_Y:      float32(frame["y"].(float64)),
-		Size_X:     float32(frame["w"].(float64)),
-		Size_Y:     float32(frame["h"].(float64)),
+		PosX:       float32(frame["x"].(float64)),
+		PosY:       float32(frame["y"].(float64)),
+		SizeX:      float32(frame["w"].(float64)),
+		SizeY:      float32(frame["h"].(float64)),
 	}
 }
 

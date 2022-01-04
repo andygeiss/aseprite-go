@@ -48,10 +48,10 @@ func Test_FrameAt_Should_Return_Frame_1_Given_Example_File_With_Valid_Index(t *t
 	if frame != nil {
 		assertThat(t, frame.DurationMs, 100)
 		assertThat(t, frame.DurationMs, 100)
-		assertThat(t, frame.Pos_X, 32)
-		assertThat(t, frame.Pos_Y, 0)
-		assertThat(t, frame.Size_X, 32)
-		assertThat(t, frame.Size_Y, 32)
+		assertThat(t, frame.PosX, 32)
+		assertThat(t, frame.PosY, 0)
+		assertThat(t, frame.SizeX, 32)
+		assertThat(t, frame.SizeY, 32)
 	}
 }
 

@@ -36,8 +36,8 @@ func main() {
     frames := sprites["player-idle-down"] // get access to the frames of the animation
     
     duration := frames[0].DurationMs // get the duration in milliseconds
-    pos_x := frames[0].Pos_X // get x and y position in the spritesheet
-    pos_y := frames[0].Pos_Y
+    pos_x := frames[0].PosX // get x and y position in the spritesheet
+    pos_y := frames[0].PosY
     png := filepath.Join("sprites", "player-idle-down.png") // spritesheet is always key + .png
 }
 
