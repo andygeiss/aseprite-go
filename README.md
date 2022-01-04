@@ -12,13 +12,13 @@ He and others provided custom scripts which could be used to split a single spri
 
 ## Install the scripts
 
-Copy the .lua files from the [plugins]() folder to your Aspeprite scripts folder and use the Rescan (F5) function. 
+Copy the .lua files from the [plugins](https://github.com/andygeiss/aseprite-go/tree/main/plugins) folder to your Aspeprite scripts folder and use the Rescan (F5) function. 
 
 ![Scripts](plugins.png)
 
 ## Open example project
 
-Open the [sprites]() folder with Aseprite and open the `player.aseprite` file. 
+Open the [sprites](https://github.com/andygeiss/aseprite-go/tree/main/sprites) folder with Aseprite and open the `player.aseprite` file. 
 
 This spritesheet contains an idle and walk animation facing the up, down, left and right direction.
 ![player](player.gif)
